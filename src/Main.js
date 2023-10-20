@@ -5,7 +5,7 @@ import {
     DialogHeader,
     DialogBody,
     DialogFooter,
-    div, Typography
+    div, Typography,IconButton
 } from "@material-tailwind/react";
 function Main() {
     const [open, setOpen] = useState(false);
@@ -269,6 +269,9 @@ function Main() {
                             <tr key={index} className="even:bg-blue-gray-50/50">
                                 <td className="p-4">
                                     <Typography variant="small" color="blue-gray" className="font-normal">
+                                    <IconButton variant="outlined" className="rounded-full bg-green-700 mr-5 text-white">
+                                    {detail.NAME[0]}
+                                        </IconButton>
                                         {detail.NAME}
                                     </Typography>
                                 </td>
