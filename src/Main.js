@@ -42,29 +42,31 @@ function Main() {
 
     }
     function filterdisplay (e){
+        var f = document.getElementById('find').value.toLowerCase();
+        var g = document.getElementById('gender').value;
+        var l = document.getElementById('language').value;
         setdisplay(alldetails.filter((detail)=>{
             const {NAME, PHONE,ADDRESS, GENDER,LANGUAGE} = detail;
-            if(e.target.name === 'find')
+            if(g !== 'All Gender' && l!== 'All Languages')
             {
                 return (
-                    NAME.toLowerCase().includes(e.target.value.toLowerCase()) || PHONE.toLowerCase().includes(e.target.value.toLowerCase()) || ADDRESS.toLowerCase().includes(e.target.value.toLowerCase())
+                   (GENDER === g) && (LANGUAGE === l) && (NAME.toLowerCase().includes(f) || PHONE.toLowerCase().includes(f) || ADDRESS.toLowerCase().includes(f)  )
                  )
             }
-            if(e.target.name === 'selectgender')
+            else 
             {
-                if(e.target.value === 'All Gender')
-                return true;
+                if(g === 'All Gender' && l === 'All Languages'){
+                    return  ( NAME.toLowerCase().includes(f) || PHONE.toLowerCase().includes(f) || ADDRESS.toLowerCase().includes(f) ) 
+                }
+                else if(g === 'All Gender'){
+                  return (  ( NAME.toLowerCase().includes(f) || PHONE.toLowerCase().includes(f) || ADDRESS.toLowerCase().includes(f) )  && (LANGUAGE === l))
+                }
                 else
-                return  GENDER === e.target.value;
+                {
+                 return (  ( NAME.toLowerCase().includes(f) || PHONE.toLowerCase().includes(f) || ADDRESS.toLowerCase().includes(f) ) && (GENDER === g))
+                }
             }
-            if(e.target.name === 'selectlanguages')
-            {
-                if(e.target.value === 'All Languages')
-                return true
-                else
-                return LANGUAGE === e.target.value
-            }
-            return false
+            
         }))
 
     }
@@ -236,13 +238,13 @@ function Main() {
 
                 <div className='text-xl mb-9 ml-4'>Details-Table</div>
                 <div className='flex'>
-                <label className='mr-5 mb-5 ml-5'>Find :- <input type='text' name='find' onChange={filterdisplay} className='border-b border-b-gray-400 focus:border-b-2 border-black focus:outline-none ml-3'/></label> 
-                <select name='selectgender' onChange={filterdisplay} className='mr-5 mb-5'>
+                <label className='mr-5 mb-5 ml-5'>Find :- <input type='text' id='find' name='find' onChange={filterdisplay} className='border-b border-b-gray-400 focus:border-b-2 border-black focus:outline-none ml-3'/></label> 
+                <select name='selectgender' id='gender' onChange={filterdisplay} className='mr-5 mb-5'>
                     <option selected  >All Gender</option>
                     <option>Male</option>
                     <option> Female </option>
                 </select>
-                <select name='selectlanguages' onChange={filterdisplay} className='mr-5 mb-5'>
+                <select name='selectlanguages' id='language' onChange={filterdisplay} className='mr-5 mb-5'>
                     <option selected>All Languages</option>
                     <option>English</option>
                     <option>Gujarati</option>
@@ -252,6 +254,7 @@ function Main() {
                 <table className="table-auto text-center w-[100%]">
                     <thead>
                         <tr>
+                            <th></th>
                             {TABLE_HEAD.map((head) => (
                                 <th key={head} className="border-b border-blue-gray-100 bg-white p-4">
                                     <Typography
@@ -268,10 +271,12 @@ function Main() {
                         {display.map((detail, index) => (
                             <tr key={index} className="even:bg-blue-gray-50/50">
                                 <td className="p-4">
-                                    <Typography variant="small" color="blue-gray" className="font-normal">
                                     <IconButton variant="outlined" className="rounded-full bg-pink-700 mr-5 text-white">
                                     {detail.NAME[0]}
-                                        </IconButton>
+                                        </IconButton></td>
+                                <td >
+                                    <Typography variant="small" color="blue-gray" className="font-normal">
+                                    
                                         {detail.NAME}
                                     </Typography>
                                 </td>
