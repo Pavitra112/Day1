@@ -170,7 +170,7 @@ function Main() {
                 <DialogBody className='bg-white text-black'>
                     <label className='flex mt-5'>NAME : <input type='text' required className='border-b border-b-gray-400 focus:border-b-black focus:outline-none ml-3 w-[85%]' name='NAME' onChange={changehandler} defaultValue={name} /></label>
                     <label className='flex mt-5'>PHONE NUMBER : <input type='number' required className='border-b border-b-gray-400 focus:border-b-black focus:outline-none ml-3 w-[85%]' name='PHONE' onChange={changehandler} defaultValue={phone} /></label>
-                    <label className='flex mt-5 '>ADDRESS : <textarea name='ADDRESS' required className='border-b border-b-gray-400 focus:border-b-black focus:outline-none ml-3 w-[80%]' rows={2} cols={35} onChange={changehandler} defaultValue={address}></textarea></label>
+                    <label className='flex mt-5 '>ADDRESS : <textarea name='ADDRESS' required className='border-b border-b-gray-400 focus:border-b-black focus:outline-none ml-3 w-[80%]' rows={1}  onChange={changehandler} defaultValue={address}></textarea></label>
                     <label className='flex mt-5'>PHOTO :
                         {photo ?
                             <div class=" border border-slate-500 rounded-md ml-5">
