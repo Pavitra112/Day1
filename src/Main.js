@@ -35,6 +35,7 @@ function Main() {
     }
     function deletehandler(d){
         setdisplay(display.filter((details) => details !== d));
+        setalldetails(alldetails.filter((details)=> details !== d));
     }
     function uploadphoto(e) {
         setphoto(URL.createObjectURL(e.target.files[0]));
